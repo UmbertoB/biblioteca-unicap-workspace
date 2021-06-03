@@ -1,0 +1,8 @@
+script         : ./app.js
+name           : 'prodoc-backend'
+watch          : true
+ignore_watch   : 'logs node_modules .git test'
+max_restarts   : 4
+env            :
+  NODE_ENV: 'development'
+  PORT: 3000

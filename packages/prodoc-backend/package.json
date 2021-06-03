@@ -1,0 +1,33 @@
+{
+  "name": "prodoc-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "pm2 start pm2-ecosystem.config.yaml && pm2 logs",
+    "config": "sequelize db:seed:all",
+    "prod": "NODE_ENV='production' node app.js",
+    "update-dev-database": "npx sequelize-cli db:migrate:undo:all --env development && npx sequelize-cli db:migrate --env development && npx sequelize-cli db:seed:all --env development",
+    "update-prod-database": "npx sequelize-cli db:migrate:undo:all --env production && npx sequelize-cli db:migrate --env production && npx sequelize-cli db:seed:all --env production"
+  },
+  "author": "Umberto",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "moment": "^2.23.0",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.4",
+    "pm2": "^4.2.0",
+    "sequelize": "^4.41.2",
+    "sequelize-cli": "^5.4.0"
+  },
+  "engines": {
+    "node": "11.3.0"
+  }
+}

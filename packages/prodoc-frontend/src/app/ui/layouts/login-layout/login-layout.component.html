@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-title">
+      <img src="assets/img/unicap-logo.jpg" class="unicap-logo" alt="unicap-logo">
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()">
+
+      <div class="form-group">
+
+        <input class="form-control form-control-lg mb-3" type="text" placeholder="Email" name="email" formControlName="email"
+          autocomplete="off" autofocus>
+
+        <input class="form-control form-control-lg mb-3" type="password" placeholder="Senha" name="password" formControlName="password"
+          autocomplete="off">
+
+        <button [disabled]="loadingLogin" class="btn btn-lg btn-block">
+          <i [hidden]="!loadingLogin" class="fa fa-spinner fa-spin"></i> {{ loginButton }}
+        </button>
+        
+      </div>
+
+    </form>
+
+    <small>{{ currentYear | date:'yyyy' }} © v{{ currentVersion }}</small>
+
+  </div>
+</div>

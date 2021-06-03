@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2 col-md-2">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-single-02 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-10 col-md-10">
+            <h5 class="title" style="margin-bottom: 0">{{ userData?.name }}</h5>
+            <p class="paragraph">{{ userData?.Role?.title }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-clock-o"></i> Cadastrado em {{ userData?.createdAt | date:'dd/MM/yyyy HH:mm' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-single-copy-04 text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Diploma</p>
+              <p class="card-title">{{ userDegree || 'Não consta' }}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <hr>
+        <div class="stats" *ngIf="userDegree">
+          <i class="fa fa-clock-o"></i> Certificado registrado em
+          {{ userData?.Degrees[0].issueDate | date:'dd/MM/yyyy' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-icon nc-vector text-danger"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              <p class="card-category">Pontuação de Atividades</p>
+              <p class="card-title">
+                {{ userData?.score }}
+                <p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+          <i class="fa fa-check"></i> Valor equivalente das atividades
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card ">
+      <div class="card-header ">
+        <h5 class="card-title">Progresso até a próxima promoção</h5>
+      </div>
+      <div class="card-body ">
+        <svg viewBox="0 0 36 36" class="circular-chart orange">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+          <path #someInput class="circle" stroke-dasharray="30, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /> <text x="18" y="20.35"
+            class="percentage">{{userProgress}}%</text> </svg>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="stats">
+              <i class="fa"
+                [ngClass]="{'fa-check': promotionCriteria?.hasDegree, 'fa-circle-o': !promotionCriteria?.hasDegree}"></i>
+              {{ promotionCriteria?.degree }}
+            </div>
+            <div class="stats">
+              <i class="fa"
+                [ngClass]="{'fa-check': promotionCriteria?.hasScore, 'fa-circle-o': !promotionCriteria?.hasScore}"></i>
+              {{ promotionCriteria?.score }}
+            </div>
+          </div>
+          <div class="col-md-6" style="text-align: right;">
+            <button class="btn btn-success" (click)="promotionRequest()">
+              <i [hidden]="!requestingPromotion" class="fa fa-spin fa-spinner"></i> {{ requestingPromotion ? 'Validando os dados' : 'Solicitar Promoção'}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Atividades no Ano</h5>
+      </div>
+      <div class="card-body">
+        <canvas id="speedChart" width="400" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>

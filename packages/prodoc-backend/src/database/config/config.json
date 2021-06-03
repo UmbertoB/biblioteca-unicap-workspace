@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "12345678",
+    "database": "prodoc-database",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "bf90587d18a12a",
+    "password": "b6c38dc8",
+    "database": "heroku_69a71af50585465",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "dialect": "mysql"
+  }
+}
