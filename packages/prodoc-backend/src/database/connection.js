@@ -3,12 +3,11 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/config/config.json')[env];
 
 const connection = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
   dialect: config.dialect,
-  operatorsAliases: false,
-
+  host: config.host,
+  port: config.port,
   logging: false,
-
+  operatorsAliases: false,
   pool: {
     max: 5,
     min: 0,
@@ -18,6 +17,6 @@ const connection = new Sequelize(config.database, config.username, config.passwo
 
 });
 
-connection.authenticate()
+connection.authenticate();
 
 module.exports = connection;
