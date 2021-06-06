@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'app/services/api/user.service';
+import { AuthService } from 'app/services/auth/auth.service';
 
 
 @Component({
@@ -7,5 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  ngOnInit() { }
+  constructor(public authService: AuthService, private userService: UserService) { }
+
+  ngOnInit() { 
+
+    this.userService.getMe().subscribe(res => {
+
+      this.authService.currentUser = res.data;
+
+    });
+
+  }
 }

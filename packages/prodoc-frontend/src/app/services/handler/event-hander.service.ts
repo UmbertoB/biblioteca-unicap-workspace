@@ -34,14 +34,16 @@ export class EventHandler {
  */
   private handle200(event: any): void {
 
-    if (typeof Object.keys(event.body)[0] === 'string' && Object.keys(event.body)[0].substr(0, 3) === 'new') {
-      this.toast.success('Criado com sucesso!');
-    } else if (typeof Object.keys(event.body)[0] === 'string' && Object.keys(event.body)[0].substr(0, 6) === 'edited') {
-      this.toast.success('Atualizado com sucesso!');
-    } else if (event.body.error && event.body.msg) {
-      this.toast.success(event.body.msg);
-    } else if (event.body instanceof Blob) {
-      this.toast.success('Download com sucesso!')
+    if (event.body) {
+      if (typeof Object.keys(event.body)[0] === 'string' && Object.keys(event.body)[0].substr(0, 3) === 'new') {
+        this.toast.success('Criado com sucesso!');
+      } else if (typeof Object.keys(event.body)[0] === 'string' && Object.keys(event.body)[0].substr(0, 6) === 'edited') {
+        this.toast.success('Atualizado com sucesso!');
+      } else if (event.body.error && event.body.msg) {
+        this.toast.success(event.body.msg);
+      } else if (event.body instanceof Blob) {
+        this.toast.success('Download com sucesso!')
+      }
     }
     
 
@@ -53,7 +55,7 @@ export class EventHandler {
    * @param {any} event
    */
   private handle400(event: any): void {
-    this.toast.danger(event.error.msg || 'Ocorreu um erro');
+    this.toast.danger(event.error.msg[0] || 'Ocorreu um erro');
   }
 
 
@@ -77,7 +79,11 @@ export class EventHandler {
    * @param {any} event
    */
   private handle422(event: any): void {
-    this.toast.danger(event.error.msg || 'Ocorreu um erro');
+    if (event.error && event.error.length > 0) {
+      event.error.forEach(err => {
+        this.toast.danger(err.msg || 'Ocorreu um erro');
+      });
+    }
   }
 
 

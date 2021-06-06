@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'app/services/auth/auth.service';
 
 
 export interface RouteInfo {
@@ -9,9 +10,9 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',     title: 'Painel',          icon:'nc-chart-pie-36',   class: '' },
-    { path: '/degrees',       title: 'Diplomas',        icon:'nc-single-copy-04', class: '' },
-    { path: '/activities',    title: 'Atividades',      icon:'nc-trophy',         class: '' },
+    { path: '/dashboard',     title: 'Painel',  icon:'nc-chart-pie-36',   class: '' },
+    { path: '/my-books',      title: 'Meus Livros', icon:'nc-book-bookmark',      class: '' },
+    { path: '/library-books', title: 'Biblioteca',  icon:'nc-single-copy-04', class: '' },
 ];
 
 @Component({
@@ -22,7 +23,15 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    constructor(private authService: AuthService) {
+
+    }
+
     ngOnInit() {
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        if (this.authService.isAdmin()) {
+            this.menuItems = ROUTES.filter(menuItem => menuItem.path !== '/my-books');
+        } else {
+            this.menuItems = ROUTES;
+        }
     }
 }

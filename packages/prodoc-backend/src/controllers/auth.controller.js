@@ -8,19 +8,17 @@ const AuthController = {
         try {
             const bodyParams = req.body;
             const errors = validationResult(req);
-            console.log(bodyParams);
+
             if (!errors.isEmpty()) {
-                console.log(errors.array());
                 return res.status(422).json(errors.array());
             }
 
-            const user = await authService.createUser(bodyParams);
+            const user = await authService.createUser({...bodyParams, type: 'Aluno' });
 
             res.status(200).send({ user });
 
         } catch (err) {
-
-            console.log(err);
+            console.log(err)
             res.status(400).send({ error: true, msg: err.name })
 
         }

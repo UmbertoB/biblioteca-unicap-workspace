@@ -3,7 +3,7 @@
     <div class="card-title">
       <img src="assets/img/unicap-logo.jpg" class="unicap-logo" alt="unicap-logo">
     </div>
-    <form [formGroup]="loginForm" (submit)="login()">
+    <form *ngIf="!isRegister" [formGroup]="loginForm" (submit)="login()">
 
       <div class="form-group">
 
@@ -13,13 +13,47 @@
         <input class="form-control form-control-lg mb-3" type="password" placeholder="Senha" name="password" formControlName="password"
           autocomplete="off">
 
-        <button [disabled]="loadingLogin" class="btn btn-lg btn-block">
-          <i [hidden]="!loadingLogin" class="fa fa-spinner fa-spin"></i> {{ loginButton }}
+        <button [disabled]="loadingButton" class="btn btn-lg btn-block">
+          <i [hidden]="!loadingButton" class="fa fa-spinner fa-spin"></i> {{ loginButton }}
         </button>
-        
+
       </div>
 
     </form>
+    
+    <form *ngIf="isRegister" [formGroup]="registerForm" (submit)="register()">
+
+      <div class="form-group">
+
+        <input class="form-control form-control-lg mb-3" type="text" placeholder="Nome" name="username" formControlName="username"
+          autocomplete="off" autofocus>
+
+        <input class="form-control form-control-lg mb-3" type="text" placeholder="Email" name="email" formControlName="email"
+          autocomplete="off">
+
+        <input class="form-control form-control-lg mb-3" type="password" placeholder="Senha" name="password" formControlName="password"
+          autocomplete="off">
+
+        <input class="form-control form-control-lg mb-3" type="password" placeholder="Confirmar Senha" name="confirm_password" formControlName="confirm_password"
+          autocomplete="off">
+
+        <button [disabled]="loadingButton" class="btn btn-lg btn-block">
+          <i [hidden]="!loadingButton" class="fa fa-spinner fa-spin"></i> {{ registerButton }}
+        </button>
+
+      </div>
+
+    </form>
+
+    <button *ngIf="!isRegister" type="button" class="btn btn-lg btn-block" (click)="setRegister(true)">
+      Cadastrar
+    </button>
+
+    <button *ngIf="isRegister" type="button" class="btn btn-lg btn-block" (click)="setRegister(false)">
+      Voltar
+    </button>
+    
+    
 
     <small>{{ currentYear | date:'yyyy' }} © v{{ currentVersion }}</small>
 

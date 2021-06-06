@@ -1,24 +1,23 @@
 const jwt = require('jsonwebtoken');
-const db = require('../database/models');
 const bcrypt = require('bcryptjs')
+const database = require('../database');
 
 const _jwtSecret = '0.rfyj3n9nzh'
 
 const UserService = {
 
-    createUser({ email, password, name, perfil }) {
-
+    async createUser({ email, password, username, type }) {
         password = bcrypt.hashSync(password);
 
-        return db.User.create({ email, password, name, perfil });
-
+        return await database('users').insert({ email, password, username, type });
+        
     },
 
     async login(email) {
 
-        const user = await db.User.findOne({ where: { email } })
+        const user = await database('users').where('email', '=', email);
 
-        return jwt.sign({ user }, _jwtSecret);
+        return jwt.sign({ user: user[0] }, _jwtSecret);
 
     },
 
@@ -30,7 +29,7 @@ const UserService = {
                     return;
                 }
 
-                UserService._user = db.User.findByPk(decoded['id']);
+                UserService._user = database('users').where('user_id', '=', decoded['id']);
                 resolve(true)
                 return;
             })

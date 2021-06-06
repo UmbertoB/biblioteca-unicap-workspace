@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="authService.currentUser">
     <div class="sidebar" data-color="white" data-active-color="primary">
         <sidebar-cmp></sidebar-cmp>
     </div>

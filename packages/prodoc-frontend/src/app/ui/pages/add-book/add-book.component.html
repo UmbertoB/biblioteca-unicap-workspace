@@ -1,0 +1,36 @@
+<div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card card-user">
+                <div class="card-header">
+                    <a data-notify="icon" routerLink=".." class="nc-icon nc-minimal-left"></a>
+                    <h5 class="card-title">Adicionar Livro na Biblioteca</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="bookForm" (submit)="submit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input type="text" class="form-control" formControlName="title"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Descrição</label>
+                                    <textarea class="form-control textarea" formControlName="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="update ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-round">Adicionar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

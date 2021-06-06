@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  public currentUser: any;
   public tokens: any;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -22,6 +23,20 @@ export class AuthService {
 
     return this.http.post(`${environment.baseUrl}/api/login`, { email, password });
 
+  }
+
+    /**
+   * @param {string} username
+   * @param {string} email
+   * @param {string} password
+   * @param {string} confirm_password
+   * @returns {Observable<any>}
+   *
+   */
+  public registerUser(user): Observable<any> {
+
+    return this.http.post(`${environment.baseUrl}/api/register`, user);
+  
   }
 
 
@@ -56,9 +71,17 @@ export class AuthService {
 
   }
 
+  public isAdmin() {
+
+    return this.isLoggedIn() && this.currentUser.type === 'Admin';
+
+  }
+
   public logout(): void {
 
     eraseCookie('auth_token');
+
+    this.currentUser = null;
 
     this.router.navigate(['login']);
 

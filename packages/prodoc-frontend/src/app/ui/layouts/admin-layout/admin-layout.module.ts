@@ -6,12 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
 import { DashboardComponent }       from 'app/ui/pages/dashboard/dashboard.component';
-import { ActivitiesComponent } from "app/ui/pages/activities/activities.component";
-import { AddActivityComponent } from 'app/ui/pages/add-activity/add-activity.component';
-import { DegreesComponent } from 'app/ui/pages/degrees/degrees.component';
-import { AddDegreeComponent } from 'app/ui/pages/add-degree/add-degree.component';
+import { LibraryBooksComponent } from 'app/ui/pages/library-books/library-books.component';
+import { AddBookComponent } from 'app/ui/pages/add-book/add-book.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserBooksComponent } from 'app/ui/pages/user-books/user-books.component';
 
 @NgModule({
   imports: [
@@ -23,10 +22,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   declarations: [
     DashboardComponent,
-    ActivitiesComponent,
-    AddActivityComponent,
-    DegreesComponent,
-    AddDegreeComponent,
+    LibraryBooksComponent,
+    AddBookComponent,
+    UserBooksComponent,
   ]
 })
 

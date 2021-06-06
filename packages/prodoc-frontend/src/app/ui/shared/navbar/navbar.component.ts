@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit{
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef, private router: Router, private authService: AuthService) {
+    constructor(location:Location, private renderer : Renderer, private element : ElementRef, private router: Router, public authService: AuthService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;

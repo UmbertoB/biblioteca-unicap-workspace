@@ -1,9 +1,6 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                <button type="submit" routerLink="add" class="btn btn-primary btn-round">Adicionar</button>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table">
@@ -15,38 +12,26 @@
                                 Descrição
                             </th>
                             <th>
-                                Realizada em
-                            </th>
-                            <th>
-                                Registrada em
-                            </th>
-                            <th>
                                
                             </th>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let degree of tableData">
+                            <tr *ngFor="let book of tableData">
                                 <td>
-                                    {{ degree.DegreeType.title }}
+                                    {{ book.title }}
                                 </td>
                                 <td>
-                                    {{ degree.description || 'Não consta' }}
+                                    {{ book.description || 'Não consta' }}
                                 </td>
                                 <td>
-                                    {{ degree.issueDate | date:'dd/MM/yyyy' }}
-                                </td>
-                                <td>
-                                    {{ degree.createdAt | date:'dd/MM/yyyy HH:mm' }}
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-danger" title="Excluir Diploma" (click)="deleteDegree(degree.id)">
-                                        <i class="fa fa-trash"></i>
+                                    <button class="btn btn-sm btn-success" title="Devolver Livro" (click)="returnBook(book)">
+                                        <i class="fa fa-check-square-o"></i> Devolver
                                     </button>
                                 </td>
                             </tr>
                             <tr *ngIf="!tableData || tableData.length <= 0">
                                 <td colspan="6" class="empty-list">
-                                    Nenhum diploma registrado
+                                    Você não tem livros alugados
                                 </td>
                             </tr>
                         </tbody>

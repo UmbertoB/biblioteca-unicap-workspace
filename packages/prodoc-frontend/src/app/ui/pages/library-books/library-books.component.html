@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div *ngIf="authService.isAdmin()" class="card-header">
+                <button type="submit" routerLink="add" class="btn btn-primary btn-round">Adicionar</button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-primary">
+                            <th>
+                                Título
+                            </th>
+                            <th>
+                                Descrição
+                            </th>
+                            <th>
+                               
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let book of tableData">
+                                <td>
+                                    {{ book.title }}
+                                </td>
+                                <td>
+                                    {{ book.description || 'Não consta' }}
+                                </td>
+                                <td *ngIf="!authService.isAdmin()">
+                                    <button *ngIf="!book.isrent" class="btn btn-sm btn-info" title="Alugar Livro" (click)="rentBook(book)">
+                                        <i class="fa fa-plus-circle"></i> Alugar
+                                    </button>
+                                    <button *ngIf="book.isrent" class="btn btn-sm btn-danger" disabled>
+                                        {{ authService.currentUser.username != book.username ? 'Alugado por ' + book.username : 'Você Alugou' }}
+                                    </button>
+                                </td>
+                                <td *ngIf="authService.isAdmin()">
+                                    <button *ngIf="!book.isrent" class="btn btn-sm btn-success" style="cursor: default">
+                                        <i class="fa fa-check-circle-o"></i> Disponível
+                                    </button>
+                                    <button *ngIf="book.isrent" class="btn btn-sm btn-danger" style="cursor: default">
+                                        {{ 'Alugado por ' + book.username }}
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr *ngIf="!tableData || tableData.length <= 0">
+                                <td colspan="6" class="empty-list">
+                                    Nenhum livro registrado
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

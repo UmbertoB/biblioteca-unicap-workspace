@@ -4,8 +4,16 @@ const bookRouter = Router()
 
 bookRouter.get('/', BookController.list);
 
+bookRouter.get('/count-avaiable', BookController.countAvaiableBooks);
+
+bookRouter.get('/my-books/:userId', BookController.listUserBooks);
+
+bookRouter.get('/my-books/:userId/count', BookController.countUserBooks);
+
+bookRouter.post('/', BookController.newBook);
+
 bookRouter.post('/rent', BookController.rent);
 
-bookRouter.post('/returnBook', BookController.returnBook);
+bookRouter.post('/return', BookController.returnBook);
 
 module.exports = bookRouter;

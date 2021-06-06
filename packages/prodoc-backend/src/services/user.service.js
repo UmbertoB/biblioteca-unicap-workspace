@@ -1,15 +1,13 @@
-const db = require('../database/models');
+const database = require('../database');
 
 const UserService = {
 
     _fromID(id) {
-        return db.User.findOne({
-            where: { id }
-        });
+        return database('users').where('id', '=', id);
     },
 
     findAll() {
-        return db.User.findAll();
+        return database('users');
     }
 }
 
