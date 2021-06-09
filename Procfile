@@ -1,1 +1,1 @@
-web: node ./packages/prodoc-frontend/app.js
+web: node ./packages/prodoc-frontend/web.js
