@@ -7,7 +7,7 @@ const userRules = {
 
     check('email')
       .isEmail().withMessage('Formato de email inválido')
-      .custom(async email => { const users = await database('users').where('email', '=', email); return users.length < 1 }).withMessage('Este email já está cadastrado'),
+      .custom(async email => { const users = await database('users').where('email', '=', email); console.log(users); return users.length < 1 }).withMessage('Este email já está cadastrado'),
 
     check('confirm_password')
       .custom((confirm_password, { req }) => req.body.password === confirm_password).withMessage('As senhas são diferentes')
