@@ -10,7 +10,8 @@ import { LoginLayoutRoutes } from './login-layout.routing';
     NgbModule,
     RouterModule.forChild(LoginLayoutRoutes),
   ],
-  declarations: []
+  declarations: [],
+  providers: [],
 })
 
 export class LoginLayoutModule {}

@@ -25,7 +25,8 @@ import { UserBooksComponent } from 'app/ui/pages/user-books/user-books.component
     LibraryBooksComponent,
     AddBookComponent,
     UserBooksComponent,
-  ]
+  ],
+  providers: []
 })
 
 export class AdminLayoutModule {}
