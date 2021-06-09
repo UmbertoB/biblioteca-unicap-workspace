@@ -1,13 +1,14 @@
 const bcrypt = require('bcryptjs');
 const check = require('express-validator/check').check;
 const database = require('../database')
+const logger = require('heroku-logger')
 
 const userRules = {
   forRegister: [
 
     check('email')
       .isEmail().withMessage('Formato de email inválido')
-      .custom(async email => { const users = await database('users').where('email', '=', email); console.log(users); return users.length < 1 }).withMessage('Este email já está cadastrado'),
+      .custom(async email => { logger.info(database); const users = await database('users').where('email', '=', email); logger.info(users); return users.length < 1 }).withMessage('Este email já está cadastrado'),
 
     check('confirm_password')
       .custom((confirm_password, { req }) => req.body.password === confirm_password).withMessage('As senhas são diferentes')

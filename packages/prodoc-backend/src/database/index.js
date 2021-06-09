@@ -11,5 +11,5 @@ module.exports = require('knex')({
         server: 'ec2-54-224-194-214.compute-1.amazonaws.com',
         port: 5432,
         database: 'd41bhlj4cl0u5p'
-    }
+    },
 });

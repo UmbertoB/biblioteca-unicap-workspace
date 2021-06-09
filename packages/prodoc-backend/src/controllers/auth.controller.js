@@ -1,5 +1,6 @@
 const validationResult = require('express-validator/check')['validationResult'];
 const authService = require('../services/auth.service');
+const logger = require('heroku-logger')
 
 const AuthController = {
 
@@ -18,7 +19,7 @@ const AuthController = {
             res.status(200).send({ user });
 
         } catch (err) {
-            console.log(err)
+            logger.info(err)
             res.status(400).send({ error: true, msg: err.name })
 
         }
