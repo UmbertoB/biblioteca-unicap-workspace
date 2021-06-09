@@ -11,6 +11,6 @@ module.exports = require('knex')({
         host: 'ec2-54-224-194-214.compute-1.amazonaws.com',
         port: 5432,
         database: 'd41bhlj4cl0u5p',
-        ssl: true
+        ssl: { rejectUnauthorized: false }
     },
 });
