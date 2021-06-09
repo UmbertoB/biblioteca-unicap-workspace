@@ -26,16 +26,22 @@ const AuthController = {
     },
 
     async login(req, res) {
-        const bodyParams = req.body;
-        const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            return res.status(401).json(errors[0]);
+        try {
+            const bodyParams = req.body;
+            const errors = validationResult(req);
+    
+            if (!errors.isEmpty()) {
+                return res.status(401).json(errors[0]);
+            }
+    
+            const token = await authService.login(bodyParams.email);
+    
+            res.status(200).send({ token });
+        } catch(e) {
+            console.log(e)
+            res.status(400).send(e)
         }
-
-        const token = await authService.login(bodyParams.email);
-
-        res.status(200).send({ token });
     },
 
 

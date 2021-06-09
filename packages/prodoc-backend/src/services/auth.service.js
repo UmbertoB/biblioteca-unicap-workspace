@@ -17,6 +17,8 @@ const UserService = {
 
         const user = await database('users').where('email', '=', email);
 
+        console.log(user)
+
         return jwt.sign({ user: user[0] }, _jwtSecret);
 
     },
