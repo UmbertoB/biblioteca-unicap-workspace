@@ -16,8 +16,11 @@ app.use(morgan('dev'));
 app.use(cors());
 routers(app);
 
-
-const port = process.env.PORT;
+if (process.env.NODE_ENV === 'production') {
+    const port = 80;
+} else {
+    const port = process.env.PORT;
+}
 
 http.listen(port, () => {
     console.log(`Server Running ${process.env.NODE_ENV === 'production' ? '(production) ' : ''}${port ? 'on Port ' + port : ''}`);
