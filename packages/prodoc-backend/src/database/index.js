@@ -6,10 +6,10 @@ const { Knex } = require('knex');
 module.exports = require('knex')({
     client: 'pg',
     connection: {
-        user: 'user',
-        password: 'password123',
-        server: '127.0.0.1',
+        user: 'fcthwmjxcyqoca',
+        password: '909e3eea762710894e28735dd5c0a89d0220cfd2782e139b3832d49359f1506c',
+        server: 'ec2-54-224-194-214.compute-1.amazonaws.com',
         port: 5432,
-        database: 'bibliotecadb'
+        database: 'd41bhlj4cl0u5p'
     }
 });
