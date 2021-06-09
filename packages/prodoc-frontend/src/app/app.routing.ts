@@ -12,7 +12,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './ui/layouts/login-layout/login-layout.module#LoginLayoutModule'
+        loadChildren: () => import('./ui/layouts/login-layout/login-layout.module').then(m => m.LoginLayoutModule)
       }]
   },
   {
@@ -22,7 +22,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './ui/layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+        loadChildren: () => import('./ui/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }]
   },
   {
